@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Overlap/Hurtbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/blue_object_lever_4.png" type="Texture" id=2]
+[ext_resource path="res://assets/blue_object_lever_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/blue_object_lever_5.png" type="Texture" id=4]
+[ext_resource path="res://assets/blue_object_lever_3.png" type="Texture" id=5]
+[ext_resource path="res://assets/blue_object_lever_2.png" type="Texture" id=6]
+[ext_resource path="res://Objects/Lever.gd" type="Script" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "staticRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "staticLeft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "rtl",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "ltr",
+"speed": 8.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 13.144
+height = 14.437
+
+[node name="BlueLever" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 7 )
+orange1blue0 = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "staticRight"
+
+[node name="Hurtbox" parent="." instance=ExtResource( 1 )]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 2, 3.916 )
+rotation = -1.5708
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
+[editable path="Hurtbox"]
