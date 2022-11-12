@@ -89,7 +89,6 @@ func roll_animation_finished():
 	state = MOVE
 
 
-
 func attack_state():
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
