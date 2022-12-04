@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://new_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -9,6 +9,10 @@
 size = 64
 use_filter = true
 font_data = ExtResource( 4 )
+
+[sub_resource type="Environment" id=2]
+glow_enabled = true
+glow_bloom = 1.0
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -130,3 +134,6 @@ margin_top = -37.0
 margin_right = -220.0
 margin_bottom = 554.0
 color = Color( 0.0901961, 0.941176, 0.286275, 0.243137 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
